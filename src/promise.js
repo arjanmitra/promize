@@ -4,11 +4,15 @@ const funcPromise = () => {
   return new Promise((resolve, reject) => resolve('funcPromise'));
 };
 const chainedPromise = (prom) => {
-  resolvedProm = prom.then((message) => {
-    return message;
+  let newProm = new Promise((resolve, reject) => {
+    setTimeout(function () {
+      resolve(prom);
+    }, 250);
   });
   return new Promise((resolve, reject) => {
-    resolve(message);
+    newProm.then((success) => {
+      return success;
+    });
   });
 };
 const rejectedPromise = () => {
